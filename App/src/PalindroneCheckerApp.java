@@ -1,19 +1,25 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class PalindroneCheckerApp {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        String input = "noon";
+        String input = "civic";
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
         for(char c : input.toCharArray()){
             stack.push(c);
+            queue.add(c);
         }
-        boolean isPalindrome = false;
-        for(char c : input.toCharArray()){
-            char poppedChar = stack.pop();
-            if(poppedChar!=c){
-                isPalindrome = true;
+        boolean isPalindrome = true;
+        while(!queue.isEmpty()){
+            char fromQueue = queue.remove();
+            char fromStack = stack.pop();
+            if(fromQueue != fromStack){
+                isPalindrome =  false;
+                break;
             }
         }
 
